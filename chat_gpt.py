@@ -6,7 +6,12 @@ class ChatGPTClient:
         self.messages = []
 
     # sends message and returns the response
-    def send_message(self):
+    def send_message(self, message):
+        
+        self.messages.append(
+            {"role": "user", "content": message}
+        )
+
         completion = openai.ChatCompletion.create(
             model = "gpt-3.5-turbo",
             messages = self.messages
@@ -18,3 +23,7 @@ class ChatGPTClient:
     # clears the messages from the messages list
     def clear_messages(self):
         self.messages = []
+
+
+client = ChatGPTClient("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")
+client.send_message("tell me a funny joke")
