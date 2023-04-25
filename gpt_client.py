@@ -23,7 +23,3 @@ class ChatGPTClient:
     # clears the messages from the messages list
     def clear_messages(self):
         self.messages = []
-
-
-client = ChatGPTClient("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")
-client.send_message("tell me a funny joke")

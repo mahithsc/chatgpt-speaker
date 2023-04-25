@@ -1,20 +1,12 @@
 from speach_to_text import STT
 from recorder import Recorder
-import threading
-import time
+from gpt_client import ChatGPTClient
 
-stt = STT()
-recorder = Recorder()
-transcribe_thread = threading.Thread(target=stt.transcribe)
+# getting key from the file
+with open('key.txt', 'r') as f:
+    key = f.readline()
 
-start_time = time.time()
-print("starts recording")
-while time.time() - start_time < 5:
-    recorder.capture_audio()
-    transcribe_thread.join()
+chat_client = ChatGPTClient(key)
 
-recorder.save()
-recorder.close()
-print("end recording")
-
-print(stt.transcribe("recording.wav"))
+# stt = STT()
+# recorder = Recorder()
