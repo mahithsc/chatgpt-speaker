@@ -18,7 +18,7 @@ class ChatGPTClient:
         )
         
         self.messages.append(completion.choices[0].message)
-        return completion.choices[0].message
+        return completion.choices[0].message.content
     
     # clears the messages from the messages list
     def clear_messages(self):

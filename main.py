@@ -1,20 +1,24 @@
-from speach_to_text import STT
-from recorder import Recorder
 from gpt_client import ChatGPTClient
+from stt import SpeechToText
 from gtts import gTTS
 import os
 
+# getting key from the file
+with open('key.txt', 'r') as f:
+    key = f.readline()
 
-# # getting key from the file
-# with open('key.txt', 'r') as f:
-#     key = f.readline()
+transcribe = SpeechToText()
+chat_client = ChatGPTClient(key)
 
-# chat_client = ChatGPTClient(key)
+while True:
+    text = transcribe.recognize_speech()
 
-# mytext = chat_client.send_message("tell me anorther joke").content
+    if text:
+        response = chat_client.send_message(text)
+        print(response)
 
-# myobj = gTTS(text=mytext, lang='en', slow=False)
+        myobj = gTTS(text=response, lang='en', slow=False)
   
-# myobj.save("response.mp3")
-  
-# os.system("mpg123 response.mp3")
+        myobj.save("response.mp3")
+        
+        os.system("mpg123 response.mp3")
