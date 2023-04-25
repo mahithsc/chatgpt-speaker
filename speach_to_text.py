@@ -4,6 +4,8 @@ class STT:
     def __init__(self):
         self.model = whisper.load_model("base")
         
-    def transcribe(self):
-        self.result = self.model.transcribe("test.mp3")
+    def transcribe(self, file_name):
+        print("BEGIN TRANSCRIBE")
+        self.result = self.model.transcribe(file_name)
+        print("END TRANSCRIBE")
         return self.result["text"]
