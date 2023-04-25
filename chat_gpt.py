@@ -1,6 +1,6 @@
 import openai
 
-class ChatGPtClient:
+class ChatGPTClient:
     def __init__(self, api_key):
         openai.api_key = api_key
         self.messages = []
